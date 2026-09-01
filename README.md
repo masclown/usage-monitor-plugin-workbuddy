@@ -39,4 +39,4 @@ WorkBuddy (CodeBuddy) provider plugin for the UsageMonitor ecosystem.
 
 ## License
 
-Licensed under **Apache License 2.0** (`LICENSE-APACHE`), consistent with the main project''s SDK / declaration pack licensing model.
+Licensed under **Apache License 2.0** (`LICENSE-APACHE`), consistent with the main project's SDK / declaration pack licensing model.
