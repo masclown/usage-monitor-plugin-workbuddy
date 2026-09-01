@@ -1,0 +1,48 @@
+﻿name: Plugin Release
+
+on:
+  push:
+    tags:
+      - ''v*''
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  pack:
+    name: Pack Plugin Zip
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Pack plugin zip
+        shell: pwsh
+        run: |
+          $version = "${{ github.ref_name }}" -replace ''^v'', ''''
+          $repoName = "${{ github.event.repository.name }}"
+          $id = ($repoName -split ''-'', -1)[-1]
+          $zipName = "$id-$version.zip"
+
+          Add-Type -AssemblyName System.IO.Compression.FileSystem
+          [System.IO.Compression.ZipFile]::CreateFromDirectory(
+            $PWD, $zipName,
+            [System.IO.Compression.CompressionLevel]::Optimal, $true)
+
+          Write-Host "Packed: $zipName ($([math]::Round((Get-Item $zipName).Length / 1MB, 1)) MB)"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: ${{ github.ref_name }}
+          prerelease: ${{ contains(github.ref_name, ''-beta'') || contains(github.ref_name, ''-alpha'') }}
+          body: |
+            Plugin release ${{ github.ref_name }}
+            主项目 plugins.lock.json 更新方法见仓库 README。
+          files: ''*.zip''
+          fail_on_unmatched_files: true
