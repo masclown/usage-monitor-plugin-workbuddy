@@ -1,0 +1,39 @@
+{
+  "plugin.WorkBuddy.login.button": "🌐 获取 WorkBuddy 登录态",
+  "plugin.WorkBuddy.field.BackfillDays.name": "明细回补天数",
+  "plugin.WorkBuddy.field.BackfillDays.placeholder": "向前采集用量明细的天数（默认 7；改大后下次刷新自动向历史回补，如 365 = 采集近一年）",
+  "plugin.WorkBuddy.guidance.credential": "请先获取 WorkBuddy 登录态（浏览器登录 workbuddy.cn 后自动保存 Cookie）",
+  "plugin.WorkBuddy.guidance.authInvalid": "WorkBuddy 登录态无效或已过期，请重新获取登录态",
+  "plugin.WorkBuddy.guidance.networkUnreachable": "网络无法访问 WorkBuddy 接口，请检查网络连接、代理/VPN 是否正常",
+  "plugin.WorkBuddy.guidance.fallback": "请检查 WorkBuddy 插件配置",
+
+  "plugin.WorkBuddy.chart.overview": "WorkBuddy概览",
+  "plugin.WorkBuddy.chart.quotaUsage": "配额用量",
+  "plugin.WorkBuddy.chart.dailyCredits": "每日消耗",
+  "plugin.WorkBuddy.chart.dailyOperation": "按用途消耗",
+  "plugin.WorkBuddy.chart.requestCount": "请求次数",
+  "plugin.WorkBuddy.chart.creditsTrend": "消耗趋势",
+  "plugin.WorkBuddy.chart.creditsTrendRolling": "7日滚动趋势",
+  "plugin.WorkBuddy.chart.usedPercentTrend": "用量趋势",
+  "plugin.WorkBuddy.chart.remainingCreditsTrend": "剩余积分趋势",
+
+  "plugin.WorkBuddy.group.planRemaining": "剩余积分",
+  "plugin.WorkBuddy.group.planLimit": "总额度",
+  "plugin.WorkBuddy.group.totalUsed": "总消耗",
+  "plugin.WorkBuddy.group.todayUsed": "今日已用",
+  "plugin.WorkBuddy.group.dailyCreditsModel": "每日消耗（按模型）",
+  "plugin.WorkBuddy.group.dailyOperationModel": "每日消耗（按用途）",
+  "plugin.WorkBuddy.group.requestCountModel": "请求次数（按模型）",
+  "plugin.WorkBuddy.group.creditsTrendModel": "消耗趋势（按模型）",
+  "plugin.WorkBuddy.group.creditsTrendRollingModel": "7日滚动消耗（按模型）",
+  "plugin.WorkBuddy.group.taskbarPlan": "总用量",
+  "plugin.WorkBuddy.group.taskbarTodayUsed": "今日已用",
+  "plugin.WorkBuddy.group.taskbarRemaining": "剩余积分",
+
+  "plugin.WorkBuddy.series.conversation": "对话",
+  "plugin.WorkBuddy.series.subagentExplore": "子代理探索",
+  "plugin.WorkBuddy.series.subagent": "子代理",
+
+  "plugin.WorkBuddy.mini.ring": "用量圆环",
+  "plugin.WorkBuddy.mini.text": "积分文本"
+}
