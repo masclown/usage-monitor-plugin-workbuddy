@@ -1,0 +1,39 @@
+{
+  "plugin.WorkBuddy.login.button": "🌐 Get WorkBuddy Login",
+  "plugin.WorkBuddy.field.BackfillDays.name": "Detail Backfill Days",
+  "plugin.WorkBuddy.field.BackfillDays.placeholder": "Days of usage detail to collect backwards (default 7; increase to backfill history on next refresh, e.g. 365 = past year)",
+  "plugin.WorkBuddy.guidance.credential": "Please get WorkBuddy login first (browser login at workbuddy.cn, Cookie auto-saved)",
+  "plugin.WorkBuddy.guidance.authInvalid": "WorkBuddy login is invalid or expired, please get a new login",
+  "plugin.WorkBuddy.guidance.networkUnreachable": "Cannot reach WorkBuddy APIs, please check network or proxy/VPN settings",
+  "plugin.WorkBuddy.guidance.fallback": "Please check WorkBuddy plugin configuration",
+
+  "plugin.WorkBuddy.chart.overview": "WorkBuddy Overview",
+  "plugin.WorkBuddy.chart.quotaUsage": "Quota Usage",
+  "plugin.WorkBuddy.chart.dailyCredits": "Daily Credits",
+  "plugin.WorkBuddy.chart.dailyOperation": "Credits by Operation",
+  "plugin.WorkBuddy.chart.requestCount": "Requests by Model",
+  "plugin.WorkBuddy.chart.creditsTrend": "Credits Trend",
+  "plugin.WorkBuddy.chart.creditsTrendRolling": "7-Day Rolling Trend",
+  "plugin.WorkBuddy.chart.usedPercentTrend": "Usage Trend",
+  "plugin.WorkBuddy.chart.remainingCreditsTrend": "Remaining Credits Trend",
+
+  "plugin.WorkBuddy.group.planRemaining": "Remaining Credits",
+  "plugin.WorkBuddy.group.planLimit": "Total Credits",
+  "plugin.WorkBuddy.group.totalUsed": "Total Used",
+  "plugin.WorkBuddy.group.todayUsed": "Today Used",
+  "plugin.WorkBuddy.group.dailyCreditsModel": "Daily Credits (by Model)",
+  "plugin.WorkBuddy.group.dailyOperationModel": "Daily Credits (by Operation)",
+  "plugin.WorkBuddy.group.requestCountModel": "Requests (by Model)",
+  "plugin.WorkBuddy.group.creditsTrendModel": "Credits Trend (by Model)",
+  "plugin.WorkBuddy.group.creditsTrendRollingModel": "7-Day Rolling Trend (by Model)",
+  "plugin.WorkBuddy.group.taskbarPlan": "Total Usage",
+  "plugin.WorkBuddy.group.taskbarTodayUsed": "Today Used",
+  "plugin.WorkBuddy.group.taskbarRemaining": "Remaining Credits",
+
+  "plugin.WorkBuddy.series.conversation": "Conversation",
+  "plugin.WorkBuddy.series.subagentExplore": "Subagent Explore",
+  "plugin.WorkBuddy.series.subagent": "Subagent",
+
+  "plugin.WorkBuddy.mini.ring": "Usage Ring",
+  "plugin.WorkBuddy.mini.text": "Credits Text"
+}
