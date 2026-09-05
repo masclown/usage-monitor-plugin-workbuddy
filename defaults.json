@@ -4,7 +4,7 @@
   "providerId": "WorkBuddy",
   "displayName": "WorkBuddy",
   "meta": {
-    "version": "1.0.0",
+    "version": "1.1.0",
     "author": "UsageMonitor",
     "description": "Query WorkBuddy (CodeBuddy) credits usage (subscription plan quota / gift packages / request history)",
     "iconFile": "assets/workbuddy-icon.png",
@@ -70,24 +70,24 @@
             "fields": [
               { "path": "$.CapacitySizePrecise", "target": "total_credits", "transform": "parseNumber" },
               { "path": "$.CapacityRemainPrecise", "target": "remaining_credits", "transform": "parseNumber" },
-              // Stage-5：per-account CapacityUsedPrecise 不再写到 used_credits（避免被 fields 块 TotalDosage 覆盖）；
-              // used_credits 现只表示全局总消耗量（TotalDosage）。per-account 用量仍经 quota_rows.used 字段名保留。
+              // 账户级额度字段由 fetch.aggregates 对全部套餐与奖励包统一求和；这里仅保留主套餐名称。
               { "path": "$.PackageName", "target": "subscription_tier", "transform": "trim" },
               { "path": "$.CycleStartTime", "target": "quota_period_start_at", "transform": "parseDateTime" },
               { "path": "$.CycleEndTime", "target": "quota_period_end_at", "transform": "parseDateTime" }
             ]
           }
         ],
-        "fields": [
-          { "path": "$.data.Response.Data.TotalDosage", "target": "used_credits", "transform": "parseNumber" }
-        ],
+        "fields": [],
         "arrays": [
           {
             "itemsPath": "$.data.Response.Data.Accounts",
             "mode": "objects",
             "target": "quota_rows",
             "itemFields": [
-              { "literalValue": "purchase", "target": "quota_type" },
+              { "path": "$.SubProductName", "target": "quota_type", "transform": "trim", "valueMap": {
+                "腾讯云代码助手 (IDE)": "subscription",
+                "腾讯云代码助手 (IDE) - 赠送包": "gift"
+              } },
               { "path": "$.PackageName", "target": "display_name", "transform": "trim" },
               { "path": "$.CapacitySizePrecise", "target": "limit", "transform": "parseNumber" },
               { "path": "$.CapacityRemainPrecise", "target": "remaining", "transform": "parseNumber" },
@@ -96,6 +96,20 @@
             ]
           }
         ]
+      },
+      {
+        "urlMatch": "get-user-resource-summary",
+        "mode": "http",
+        "method": "POST",
+        "urlTemplate": "https://www.workbuddy.cn/billing/meter/get-user-resource-summary",
+        "headers": {
+          "Cookie": "{cookieHeader}",
+          "Content-Type": "application/json",
+          "x-client-platform": "web",
+          "Referer": "https://www.workbuddy.cn/profile/plans-usage",
+          "Origin": "https://www.workbuddy.cn"
+        },
+        "bodyTemplate": "{}"
       },
       // X-15 account_display_name 已下线（2026-08-13）：原 console/accounts endpoint 仅产出该字段，
       // 现移除以避免孤儿 endpoint。账号显示名改由 AccountCustomization.Nickname 用户账号字典提供。
@@ -143,6 +157,12 @@
           }
         ]
       }
+    ],
+    "aggregates": [
+      // 当前用量页主接口：覆盖套餐积分与平台奖励积分，作为总额度口径。
+      { "urlMatch": "get-user-resource-summary", "itemsPath": "$.data.Packages", "op": "sum", "valuePath": "$.CycleTotalCapacity", "valueTransform": "parseNumber", "target": "total_credits" },
+      { "urlMatch": "get-user-resource-summary", "itemsPath": "$.data.Packages", "op": "sum", "valuePath": "$.CycleRemainCapacity", "valueTransform": "parseNumber", "target": "remaining_credits" },
+      { "urlMatch": "get-user-resource-summary", "itemsPath": "$.data.Packages", "op": "sum", "valuePath": "$.CycleUsedCapacity", "valueTransform": "parseNumber", "target": "used_credits" }
     ],
     "computed": [
       { "target": "used_percent", "op": "percentOf", "operands": [ "used_credits", "total_credits" ], "whenPresent": "total_credits" },
