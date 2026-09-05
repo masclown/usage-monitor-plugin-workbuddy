@@ -1,5 +1,9 @@
 ﻿# Changelog
 
+## usage-monitor-plugin-workbuddy 1.2.0 (2026-09-05)
+
+- 移除 meta.iconUrl / meta.iconUrlDark，logo 改为运行时从网页 favicon 抓取（宿主按主题选择可渲染资源）。
+
 ## usage-monitor-plugin-workbuddy 1.1.0 (2026-09-05)
 
 - 对齐主仓 `src/Plugins/UsageMonitor.Plugin.WorkBuddy` 权威 defaults.json 与 i18n 词条。

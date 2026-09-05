@@ -4,12 +4,10 @@
   "providerId": "WorkBuddy",
   "displayName": "WorkBuddy",
   "meta": {
-    "version": "1.1.0",
+    "version": "1.2.0",
     "author": "UsageMonitor",
     "description": "Query WorkBuddy (CodeBuddy) credits usage (subscription plan quota / gift packages / request history)",
-    "iconFile": "assets/workbuddy-icon.png",
-    "iconUrl": "https://download.codebuddy.cn/web/workbuddy/39aa83f6eb1effda3c999259e7db691102ff873f/assets/workbuddy-icon-BujKiC6G.svg",
-    "iconUrlDark": "https://download.codebuddy.cn/web/workbuddy/39aa83f6eb1effda3c999259e7db691102ff873f/assets/workbuddy-icon-BujKiC6G.svg"
+    "iconFile": "assets/workbuddy-icon.png"
   },
   "credentialDomains": [ "workbuddy.cn" ],
   "metadata": {
